@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    networks:
+      - crud-net
+    volumes:
+      - dipendenti_db:/code
+    ports:
+      - 8000:8000
+    restart: 
+      always  
+    depends_on: 
+      - mysqldb  
+
+  mysqldb:
+    image: mysql:5
+    networks:
+      - crud-net
+    ports:
+      - 30000:3306    
+    volumes:
+      - mysql_data:/var/lib/mysql  
+    environment:
+      MYSQL_ROOT_PASSWORD: "${ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DB_DATABASE}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    env_file: .env
+
+networks:
+  crud-net:
+
+volumes:
+  dipendenti_db: 
+  mysql_data: 

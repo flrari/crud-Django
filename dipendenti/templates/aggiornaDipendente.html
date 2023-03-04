@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block content %}
+    <center>
+    <h1 class="display-4 m-5" style="color:#000000;">Aggiorna Dipendente</h1>
+    <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#a0b1b9b0;">
+            {% for field in uploadForm %}
+            <tr>
+                <th>{{field.label}}</th>
+                <td>{{ field }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="submit" class="btn btn-lg btn-info m-3">Submit</button>
+    </form>
+</center>
+{% endblock %}

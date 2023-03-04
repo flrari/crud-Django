@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Gestione Dipendenti</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#bde9e4;">
+<nav class="navbar navbar-light" style="background-color:#17a2b8">
+    <a href="{% url 'index' %}" class="navbar-link btn-lg" style="background-color:#afced2;color:#000000;">Dipendenti</a>
+<a href="{% url 'admin:index' %}" class = 'navbar-link btn-lg' style="background-color:#afced2;color:#000000;">Admin</a>
+    <a href="{% url 'add' %}" class="navbar-link btn-lg" style="background-color:#afced2;color:#000000;">Aggiungi un Dipendente</a>
+</nav>
+<br>
+{% block content %}
+<div class="card-columns pl-4 pr-4" style="column-count: 3;">
+    {% for item in dipendenti %}
+    <div class="card" style="width: 20rem;">
+    <div class="card-header text-center">
+        {{ item.id }}
+    </div>
+  <div class="card-body">
+    <!-- <h5 class="card-title">{{ item.id }}</h5> -->
+    <h5 class="card-title">{{ item.name }}</h5>
+   <div class="card-footer bg-transparent border-dark">
+   <p class="card-title">{{item.job_title}}</p>
+   <p class="card-text">{{ item.email }}</p>
+   <p class="card-text">{{ item.phone }}</p>
+   <p class="card-text">{{ item.employee_code }}</p>
+   <center>
+       <a href="upload/{{item.id}}" class="btn btn-success m-2" id = '{{item.id}}'>Modifica</a> 
+       <a href="delete/{{item.id}}" class="btn btn-danger m-2" id = '{{item.id}}'>Elimina</a>
+    </center>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>

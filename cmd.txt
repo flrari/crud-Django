@@ -1,0 +1,10 @@
+docker container ls
+
+docker exec -it py-sql-mysqldb-1 bash
+
+mysql -u root -p
+
+create table dipendenti(id integer not null auto_increment unique primary key, name varchar(100), email varchar(100), job_title varchar(100), phone varchar(100), employee_code varchar(100) unique not null );
+
+insert into dipendenti(name, email, job_title, phone, employee_code) VALUES ('Arianna Floris', 'ari@mail.com', 'Sviluppatrice iOs', '3469092832', '00000');
+insert into dipendenti(name, email, job_title, phone, employee_code) VALUES ('Mario Rossi', 'mario@mail.com', 'Backend Developer', '3336892832', '00111');
